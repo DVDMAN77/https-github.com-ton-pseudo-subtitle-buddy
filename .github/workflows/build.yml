@@ -28,3 +28,12 @@ jobs:
         with:
           name: subtitle-buddy-jar
           path: build/libs/*.jar
+      - name: Package with jpackage
+        run: |
+          jpackage --type exe \
+            --input build/libs \
+            --name SubtitleBuddy \
+            --main-jar subtitle-buddy-*.jar \
+            --main-class your.main.ClassName \
+            --runtime-image $(dirname $(which java))/../.. \
+            --dest output
